@@ -1,15 +1,12 @@
 //import logo from './logo.svg';
+import React, { useState, useEffect  } from 'react';
+
 import '../App.css';
-import React, { Component } from 'react';
 
-class  Logincomponent extends React.Component {
 
-constructor(props) {
-    super(props);
-    this.state = {
+const dropDownItem = [
 
-             drop_down_options: [
-      {
+       {
         name: 'Select Category',
         value: null,
       },
@@ -22,38 +19,50 @@ constructor(props) {
         value: '2',
       }
 
-      ]
 
-    };
-
-    // This binding is necessary to make `this` work in the callback
-  // this.submitdata = this.submitdata.bind(this);
-  }
+    ];
 
 
-  submitdata = (event) => {
 
-    console.log('File submit hanele ');
-
-    /*
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));*/
-  }
-
-
-  handleChange = (event) => {
-    this.setState({ value: event.target.value });
-
-       console.log(' '+event.target.value);
-  };
   
 
 
 
-  render() {
-    const { drop_down_options } = this.state;
-   return  <div  className="App container">
+
+const Logincomponent = () =>  {
+
+
+
+ const [categoryId, setCategoryId] = useState('');
+ const [courseName, setsetCourseName] = useState('');
+ const [courseDescription, setCourseDescription] = useState('');
+  const [courseImageUrl, setCourseImageUrl] = useState('');
+    const [previewUrl, setPreviewUrl] = useState('');
+
+
+ useEffect(() => {
+    // Update the document title using the browser API
+   
+
+    console.log('You select category Id  '+categoryId);
+  });
+
+
+
+  const onButtonClick = () => {
+       
+
+     
+
+
+       console.log('categoryId :  '+categoryId+" , courseName : "+courseName+" ,  courseDescription:  "+courseDescription+" ,  courseImageUrl: "+courseImageUrl+" ,  previewUrl: "+previewUrl);
+
+  };
+
+  return (
+<>
+
+     <div  className="App container">
 
     <header className="App-header">
     
@@ -70,7 +79,7 @@ constructor(props) {
 
        <div className="col col-md-6 text-sm-left">
 
-         <input type="text" name="courseName" id="courseName" placeholder="Course Name" />
+         <input type="text" name="courseName" id="courseName" placeholder="Course Name"  value={courseName}   onChange={e => setsetCourseName(e.target.value)} />
 
          </div>
       
@@ -88,7 +97,8 @@ constructor(props) {
 
          <div className="col col-md-6 text-sm-left">
          
-        <textarea type="text" name="courseDecription" id="courseDecription" placeholder="Course Description"></textarea>
+        <textarea type="text" name="courseDecription" id="courseDecription" placeholder="Course Description" onChange={e => setCourseDescription(e.target.value)} value={courseDescription} />
+        
 
          </div>
       
@@ -106,18 +116,16 @@ constructor(props) {
           <div className="col col-md-6 text-sm-left">
 
 
-        <select id="courseCategory" name="courseCategory" onChange={this.handleChange}>
+        <select id="courseCategory" name="courseCategory"   value={categoryId}
+        onChange={e => setCategoryId(e.target.value)}>
 
-
-        {drop_down_options.map(item => (
+               {dropDownItem.map(item => (
             <option key={item.value} value={item.value}>
               {item.name}
             </option>
           ))}
 
-                                    
-
-                              </select>
+         </select>
 
 
                               </div>
@@ -135,7 +143,7 @@ constructor(props) {
 
           <div className="col col-md-6 text-sm-left">
 
-        <input type="text" name="courseImageUrl" id="courseImageUrl" placeholder="Course Image Url" />
+        <input type="text" name="courseImageUrl" id="courseImageUrl" placeholder="Course Image Url"   value={courseImageUrl} onChange={e => setCourseImageUrl(e.target.value)} />
 
         </div>
       
@@ -151,7 +159,7 @@ constructor(props) {
           </div>
 
           <div className="col col-md-6 text-sm-left">
-        <input type="text" name="previewUrl" id="previewUrl" placeholder="Preview Url" />
+        <input type="text" name="previewUrl" id="previewUrl" placeholder="Preview Url"  value={previewUrl} onChange={e => setPreviewUrl(e.target.value)} />
 
          </div>
       
@@ -161,19 +169,22 @@ constructor(props) {
         <div className="row input_padding">
 
          <div className="col col-md-6">&nbsp;</div>
-         <div className="col col-md-6"><input type="button" value="Submit" className="btn btn-success"    onClick={this.submitdata}  /></div>
+         <div className="col col-md-6"><input type="button" value="Submit" className="btn btn-success"   onClick={onButtonClick}    /></div>
       
        </div>
 
      </header>
        
      
-    </div>;
-}
+    </div>
+
+     </>
+
+    );
 
 
+  }
 
 
-}
 
 export default Logincomponent;
