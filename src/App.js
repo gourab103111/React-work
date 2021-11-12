@@ -1,18 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 
-function App() {
+
+import Logincomponent from './component/Logincomponent';
+
+
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-
-          
-
-       
-      </header>
+    <div>
+     Welcome 1
     </div>
   );
 }
 
-export default App;
